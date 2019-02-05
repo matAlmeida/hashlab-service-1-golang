@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package product;
+
+message Discount {
+  float prc = 1;
+  int32 value_in_cents = 2;
+}
+
+message Product {
+  string id = 1;
+  int32 price_in_cents = 2;
+  string title = 3;
+  string description = 4;
+}
+
+message ProductWithDiscount {
+  string id = 1;
+  int32 price_in_cents = 2;
+  string title = 3;
+  string description = 4;
+  Discount discount = 5;
+}
+
+message User {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  int64 date_of_birth = 4;
+}
+
+message Ids {
+  string userID = 1;
+  string productID = 2;
+}
+
+service Products {
+  rpc WithDiscount (Ids) returns (ProductWithDiscount) {};
+}
